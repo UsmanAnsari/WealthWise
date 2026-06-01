@@ -43,7 +43,8 @@ fun CategoryDetailScreen(
         // Header
         Row(
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.padding(top = 32.dp)
         ) {
             Surface(
                 shape = CircleShape,
