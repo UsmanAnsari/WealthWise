@@ -26,6 +26,7 @@ import com.uansari.wealthwise.navigation.v2.PortfolioHome
 fun WealthWiseApp(
     windowSizeClass: WindowSizeClass,
 ) {
+    var selectedTab by remember { mutableStateOf(AppTab.Explore) }
 
     // Navigation 2 Implementation
     val navController = rememberNavController()
@@ -34,9 +35,6 @@ fun WealthWiseApp(
     /*
         val exploreBackStack = remember { mutableStateListOf<Any>(ExploreHome) }
         val portfolioBackStack = remember { mutableStateListOf<Any>(PortfolioHome) }
-
-        val currentBackStack = remember { mutableStateListOf<Any>(ExploreHome) }
-
 
         val currentBackStack = when (selectedTab) {
             AppTab.Explore -> exploreBackStack
@@ -48,7 +46,6 @@ fun WealthWiseApp(
         }
     */
 
-    var selectedTab by remember { mutableStateOf(AppTab.Explore) }
     val isExpanded = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Expanded
 
     NavigationSuiteScaffold(
@@ -105,13 +102,13 @@ fun WealthWiseApp(
         )
 
         // Navigation 3
-/*
-        AppNavDisplay(
-            backStack = currentBackStack,
-            isExpanded = isExpanded,
-            windowSizeClass = windowSizeClass,
-        )
-*/
+        /*
+                AppNavDisplay(
+                    backStack = currentBackStack,
+                    isExpanded = isExpanded,
+                    windowSizeClass = windowSizeClass,
+                )
+        */
     }
 }
 
