@@ -19,7 +19,9 @@ import com.uansari.wealthwise.ui.components.CategoryCard
 
 @Composable
 fun ExploreScreen(
-    onCategoryClick: (Int) -> Unit, modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier,
+    onCategoryClick: (Int) -> Unit,
+    selectedCategoryId: Int? = null,
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -35,12 +37,15 @@ fun ExploreScreen(
                 text = "Explore",
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(bottom = 4.dp)
+                modifier = Modifier.padding(top = 28.dp, bottom = 4.dp)
             )
         }
         items(SampleData.categories) { category ->
             CategoryCard(
-                category = category, onClick = { onCategoryClick(category.id) })
+                category = category,
+                onClick = { onCategoryClick(category.id) },
+                isSelected = category.id == selectedCategoryId
+            )
         }
     }
 }

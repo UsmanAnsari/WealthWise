@@ -1,5 +1,6 @@
 package com.uansari.wealthwise.ui.components
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,13 +25,20 @@ import com.uansari.wealthwise.model.InvestmentCategory
 
 @Composable
 fun CategoryCard(
+    modifier: Modifier = Modifier,
     category: InvestmentCategory,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier,
+    isSelected: Boolean = false,
 ) {
     Card(
         onClick = onClick,
         modifier = modifier,
+        border = if (isSelected) BorderStroke(2.dp, MaterialTheme.colorScheme.primary)
+        else null,
+        colors = CardDefaults.cardColors(
+            containerColor = if (isSelected) MaterialTheme.colorScheme.primaryContainer
+            else MaterialTheme.colorScheme.surfaceVariant
+        ),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
     ) {
         Column(

@@ -21,7 +21,9 @@ import com.uansari.wealthwise.ui.components.HoldingItem
 
 @Composable
 fun PortfolioScreen(
-    onHoldingClick: (Int) -> Unit, modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onHoldingClick: (Int) -> Unit,
+    selectedHoldingId: Int? = null,
 ) {
     LazyColumn(
         modifier = modifier.fillMaxSize(), contentPadding = PaddingValues(vertical = 16.dp)
@@ -34,7 +36,8 @@ fun PortfolioScreen(
                 Text(
                     text = "Portfolio",
                     style = MaterialTheme.typography.headlineSmall,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(top = 28.dp)
                 )
 
                 // Total value card
@@ -79,7 +82,10 @@ fun PortfolioScreen(
 
         items(SampleData.holdings) { holding ->
             HoldingItem(
-                holding = holding, onClick = { onHoldingClick(holding.id) })
+                holding = holding,
+                onClick = { onHoldingClick(holding.id) },
+                isSelected = holding.id == selectedHoldingId
+            )
         }
     }
 }
