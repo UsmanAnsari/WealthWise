@@ -1,4 +1,4 @@
-package com.uansari.wealthwise.navigation
+package com.uansari.wealthwise.navigation.v3
 
 import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.runtime.Composable
