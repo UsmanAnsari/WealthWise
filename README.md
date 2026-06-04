@@ -340,16 +340,16 @@ com.uansari.wealthwise/
 │   │
 │   ├── explore/
 │   │   ├── display/
-          ├── ExploreScreen.kt             ← LazyVerticalGrid of categories
+|   |   |  ├── ExploreScreen.kt             ← LazyVerticalGrid of categories
 │   │   ├── detail/
-          ├── CategoryDetailScreen.kt      ← category info, stats, popular options
+|   |   |  ├── CategoryDetailScreen.kt      ← category info, stats, popular options
 │   │   └── ExploreListDetailLayout.kt   ← ListDetailPaneScaffold for Expanded
 │   │
 │   ├── portfolio/
 │   │   ├── display/
-          ├── PortfolioScreen.kt           ← total value card + holdings list
+|   |   |  ├── PortfolioScreen.kt           ← total value card + holdings list
 │   │   ├── detail/
-          ├── HoldingDetailScreen.kt       ← individual holding breakdown
+|   |   |  ├── HoldingDetailScreen.kt       ← individual holding breakdown
 │   │   └── PortfolioListDetailLayout.kt ← ListDetailPaneScaffold for Expanded
 │   │
 │   └── components/
