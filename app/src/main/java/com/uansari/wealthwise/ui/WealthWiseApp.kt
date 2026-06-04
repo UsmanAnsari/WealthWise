@@ -18,42 +18,35 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.navigation.compose.rememberNavController
-import com.uansari.wealthwise.navigation.AppNavDisplay
-import com.uansari.wealthwise.navigation.AppTab
-import com.uansari.wealthwise.navigation.ExploreHome
-import com.uansari.wealthwise.navigation.PortfolioHome
+import com.uansari.wealthwise.navigation.v3.AppNavDisplay
+import com.uansari.wealthwise.navigation.v3.ExploreHome
+import com.uansari.wealthwise.navigation.v3.PortfolioHome
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WealthWiseApp(
     windowSizeClass: WindowSizeClass,
 ) {
+    var selectedTab by remember { mutableStateOf(AppTab.Explore) }
 
     // Navigation 2 Implementation
-    val navController = rememberNavController()
+//    val navController = rememberNavController()
 
     // Navigation 3 Implementation - Two independent back stacks
     val exploreBackStack = remember { mutableStateListOf<Any>(ExploreHome) }
     val portfolioBackStack = remember { mutableStateListOf<Any>(PortfolioHome) }
 
 
-    var selectedTab by remember { mutableStateOf(AppTab.Explore) }
-
-    //    val currentBackStack = remember { mutableStateListOf<Any>(ExploreHome) }
-
     val currentBackStack = when (selectedTab) {
         AppTab.Explore -> exploreBackStack
         AppTab.Portfolio -> portfolioBackStack
     }
 
-
-    val isExpanded = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Expanded
-
-
     BackHandler(enabled = currentBackStack.size > 1) {
         currentBackStack.removeLastOrNull()
     }
+
+    val isExpanded = windowSizeClass.widthSizeClass == WindowWidthSizeClass.Expanded
 
     NavigationSuiteScaffold(
         navigationSuiteItems = {
@@ -63,12 +56,13 @@ fun WealthWiseApp(
                 onClick = {
                     selectedTab = AppTab.Explore
 
+                    // Navigation 2
                     /*
-                        navController.navigate(ExploreHome) {
-                            popUpTo(ExploreHome) {
-                                inclusive = true
-                            }
-                        }
+                                        navController.navigate(ExploreHome) {
+                                            popUpTo(ExploreHome) {
+                                                inclusive = true
+                                            }
+                                        }
                     */
                 },
                 icon = {
@@ -85,12 +79,13 @@ fun WealthWiseApp(
                 onClick = {
                     selectedTab = AppTab.Portfolio
 
+                    // Navigation 2
                     /*
-                        navController.navigate(PortfolioHome) {
-                            popUpTo(PortfolioHome) {
-                                inclusive = true
-                            }
-                        }
+                                        navController.navigate(PortfolioHome) {
+                                            popUpTo(PortfolioHome) {
+                                                inclusive = true
+                                            }
+                                        }
                     */
 
                 },
@@ -103,10 +98,22 @@ fun WealthWiseApp(
                 label = { Text("Portfolio") },
             )
         }) {
-//            AppNavHost(navHostController = navController) // Navigation 2
+        // Navigation 2
+        /*
+                AppNavHost(
+                    navHostController = navController,
+                    isExpanded = isExpanded,
+                    windowSizeClass = windowSizeClass,
+                )
+        */
 
+        // Navigation 3
         AppNavDisplay(
-            backStack = currentBackStack, isExpanded = isExpanded, windowSizeClass = windowSizeClass
-        ) // Navigation 3
+            backStack = currentBackStack,
+            isExpanded = isExpanded,
+            windowSizeClass = windowSizeClass,
+        )
     }
 }
+
+enum class AppTab { Explore, Portfolio }
